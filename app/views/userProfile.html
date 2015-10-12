@@ -1,0 +1,85 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="">A2B</a>
+		</div>
+			<ul class="nav navbar-nav navbar-right">
+        
+		        <li class="dropdown">
+		          <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="">My Profile</a></li>
+		            <li><a href="">Orders</a></li>
+		            <li><a ng-click="delete(id)" href="" >Delete</a></li>
+		            
+		            <li role="separator" class="divider"></li>
+		            <li><a href="" ng-click="logout(user)">Sign Out</a></li>
+		          </ul>
+		        </li>
+     		 </ul>	
+		<!-- </div> -->
+	</div> <!-- end of container -->
+	
+</nav> <!-- end of navbar -->
+
+<!-- ============================================================================================= -->
+
+<div class="container">
+	<div class="row"  style="margin-top: 20px;">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<!-- <div class="panel panel-default">
+				<div class="panel-heading">
+					Profile Picture
+					
+				</div>
+				<div class="panel-body">
+					<img src="app/imagesface-4.png" class="img-responsive img-circle" style="max-width:100px">
+					
+				</div>
+
+
+				
+			</div> -->
+			
+		</div> <!-- end of col-md-4 -->
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">User Information</div>
+				<div class="panel-body">
+					<ul style="list-style-type:none">
+					<!-- <p>{{user}}</p> -->
+						<li>
+							<label>Name: {{user.full_name}}</label>
+						</li>
+						<li>
+							<label>Email-Address: {{user.email}}</label>
+
+							
+						</li>
+						<li>
+							<label>Contact No: {{user.phone_num}}</label>
+						</li>
+						<li>
+							<label>Wallet Amount: 5000</label>
+						</li>
+						<li>
+							<label>Address: Mantra Labs</label>
+						</li>
+						<li>
+							<label>Address 2: Bangalore</label>
+						</li>
+						
+					</ul>
+					
+				</div>
+				
+			</div>
+			
+		</div> <!-- end of col-md-6 -->
+
+			
+	</div> <!-- end of row -->
+		
+</div>
