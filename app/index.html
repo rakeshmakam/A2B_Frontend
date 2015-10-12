@@ -19,6 +19,8 @@
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <a href="http://localhost:8000/#/?merchant_id='MTIzNA=='&merchant_secret='MTAwMTI='&cart_value='1324'" onclick="window.open(this.href, 'A2B', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;">A2B</a>
+
 
     <div ng-view=""></div>
 
@@ -48,6 +50,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="bower_components/js-base64/base64.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -60,5 +63,6 @@
 
         <!-- services -->
         <script src="scripts/services/user.js"></script>
+        <script src="scripts/services/payment.js"></script>
 </body>
 </html>
