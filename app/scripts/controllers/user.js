@@ -146,9 +146,9 @@ angular.module('a2BClientApp')
 		$("#login-form").delay(100).fadeIn(100);
  		$("#register-form").fadeOut(100);
  		
-		$('#register-form-link').removeClass('active');
+		$('#register-form-link').removeClass('active').css("color", "").css("font-size", "");
 		
-		$(this).addClass('active');
+		$(this).addClass('active').css("color", "#53A3CD").css("font-size", "16px");
 		//e.preventDefault();
 	});
 	$('#register-form-link').click(function(e) {
@@ -156,9 +156,9 @@ angular.module('a2BClientApp')
 		$("#register-form").delay(100).fadeIn(100);
  		$("#login-form").fadeOut(100);
  		
-		$('#login-form-link').removeClass('active');
+		$('#login-form-link').removeClass('active').css("color", "").css("font-size", "");
 		
-		$(this).addClass('active');
+		$(this).addClass('active').css("color", "#1CB94A").css("font-size", "16px");
 		//e.preventDefault();
 	});
 
@@ -187,8 +187,12 @@ angular.module('a2BClientApp')
 		
 			$('#login-form-link').addClass('active');
 			$scope.message = "You have Registered Successfully Please verify and Login";
+			setTimeout(function() {
+  			$("#mydiv").fadeOut();
+			}, 3000);
 		}).catch(function(err){
-			$scope.error = err;
+			//$scope.error = err;
+			$scope.error = err.invalidAttributes.email[0].message;
 		})
 	}
 
@@ -202,7 +206,12 @@ angular.module('a2BClientApp')
 			var sessionObj ={'user':response.user};
 			$cookieStore.put('User',sessionObj);
 		}).catch(function(err){
+			$scope.serverMessage = "Username and Password does not matches"; // for display server msg
 			$scope.error = err;
+			setTimeout(function() {
+  			$("#mydiv").fadeOut();
+			}, 2000);
+
 		})
 	}
 
@@ -220,6 +229,7 @@ angular.module('a2BClientApp')
 		})
 	}
 
+	
 
   });
 

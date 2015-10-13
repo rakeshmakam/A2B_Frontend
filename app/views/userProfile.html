@@ -1,9 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
-		<div class="navbar-header">
+		<div class="navbar-header pull-left">
 			<a class="navbar-brand" href="">A2B</a>
 		</div>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right pull-right">
         
 		        <li class="dropdown">
 		          <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
@@ -79,7 +79,7 @@
 			
 		</div> <!-- end of col-md-6 -->
 
-		<button ng-click="pay()">Pay</button>
+		<button class="btn btn-primary center-block" ng-click="pay()" ng-disabled="payButton">Pay</button>
 	</div> <!-- end of row -->
 		
 </div>

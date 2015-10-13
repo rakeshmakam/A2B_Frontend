@@ -47,9 +47,13 @@ angular.module('a2BClientApp')
 	PaymentService.userAuthorization($scope.authToken, $scope.decodedParams)
 	.then(function (response) {
 		console.log(response);
+				// functionality of button
+			$scope.payButton = false;	
 	})
 	.catch(function (err) {
 		console.log(err);
+		$scope.payButton = true;
+
 	});
 
 	$scope.pay = function () {
