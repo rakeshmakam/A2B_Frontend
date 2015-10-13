@@ -9,15 +9,13 @@
  */
 angular.module('a2BClientApp')
   .controller('UserProfileCtrl', function ($scope, $rootScope, $cookieStore, UserService, $location, PaymentService) {
-  	console.log('in UserProfileCtrl');
-    var UserProfile = $cookieStore.get('User');
-    $rootScope.user = UserProfile.user;
+
+    $rootScope.user = $cookieStore.get('User').user;
     $scope.authToken = $rootScope.user.token;
+
 	$scope.logout = function () {
-		console.log('authToken',$scope.authToken);
 		UserService.logout($scope.authToken)
 		.then(function (response) {
-			alert("logged out successful");
 			$location.path('/')
 			$cookieStore.remove("User");
 		}).catch(function (err) {
@@ -37,14 +35,14 @@ angular.module('a2BClientApp')
 	},
 
 	$scope.params = $scope.getUrlParams(location.href);
-	
-	$scope.decodedParams = {
-		merchantId : Base64.decode($scope.params.merchant_id),
-		merchantSecret : Base64.decode($scope.params.merchant_secret),
-		cartValue : $scope.params.cart_value
+
+	$scope.userAuthorizationData = {
+		merchantId: Base64.decode($scope.params.merchant_id),
+		amount: $scope.params.amount,
+		currency: $scope.params.currency
 	};
 
-	PaymentService.userAuthorization($scope.authToken, $scope.decodedParams)
+	PaymentService.userAuthorization($scope.authToken, $scope.userAuthorizationData)
 	.then(function (response) {
 		console.log(response);
 	})
@@ -53,7 +51,25 @@ angular.module('a2BClientApp')
 	});
 
 	$scope.pay = function () {
-		console.log($scope.decodedParams);
-		PaymentService.pay($scope.authToken, $scope.decodedParams)
+		var data = {
+			currency: $scope.params.currency,
+			amount: $scope.params.amount,
+			description: $scope.params.description,
+			metadata: $scope.params.metadata,
+			recipt_email: $scope.params.recipt_email,
+			recipt_number: $scope.params.recipt_number,
+			shipping_info: $scope.params.shipping_info,
+			statement_descriptor: $scope.params.statement_descriptor,
+			status: $scope.params.status,
+			merchant_transaction_id: $scope.params.merchant_transaction_id
+		}
+		
+		PaymentService.pay($scope.authToken, data)
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (err) {
+			console.log(err);
+		});
 	}
-  });
+});
