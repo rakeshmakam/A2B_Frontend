@@ -204,6 +204,7 @@ angular.module('a2BClientApp')
 			$location.path('/userprofile')
 			var user = response.user;
 			var sessionObj ={'user':response.user};
+			sessionObj.user.password = data.password;
 			$cookieStore.put('User',sessionObj);
 		}).catch(function(err){
 			$scope.serverMessage = "Username and Password does not matches"; // for display server msg
