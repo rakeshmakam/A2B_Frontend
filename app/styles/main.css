@@ -152,6 +152,16 @@ body {
   border :none;
 
 }
-
+.clear{
+  float: none;
+  margin: 0 auto;
+}
+.clearfix{
+  overflow: hidden;
+}
+.dropdown-menu{
+  position: absolute !important;
+  background: #eee !important;
+}
 /*========================================================================*/
 

@@ -158,7 +158,7 @@ angular.module('a2BClientApp')
  		
 		$('#login-form-link').removeClass('active').css("color", "").css("font-size", "");
 		
-		$(this).addClass('active').css("color", "#1CB94A").css("font-size", "16px");
+		$(this).addClass('active').css("color", "#53A3CD").css("font-size", "16px");
 		//e.preventDefault();
 	});
 
@@ -200,6 +200,7 @@ angular.module('a2BClientApp')
 		console.log('from form',data);
 		UserService.login(data)
 		.then(function(response){
+			$scope.serverMessage = '';
 			console.log('resp',response);
 			$location.path('/userprofile')
 			var user = response.user;
@@ -209,15 +210,15 @@ angular.module('a2BClientApp')
 		}).catch(function(err){
 			$scope.serverMessage = "Username and Password does not matches"; // for display server msg
 			$scope.error = err;
-			setTimeout(function() {
-  			$("#mydiv").fadeOut();
-			}, 2000);
+			// setTimeout(function() {
+  	// 		$("#mydiv").fadeOut();
+  	// 			$scope.serverMessage = '';
+			// }, 2000);
 
 		})
 	}
 
 	
-
 	$scope.delete = function(id){
 		console.log('from form',id);
 		UserService.delete(id)
