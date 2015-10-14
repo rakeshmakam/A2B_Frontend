@@ -1,6 +1,6 @@
 angular.module('a2BClientApp')
   .service('UserService', function ($q, $http, $resource,$rootScope, $cookieStore) {
-  	var baseUrl = 'http://localhost:1337';
+  	var baseUrl = 'http://localhost:8822';
 
     this.userDetails = function(){
       var deferred = $q.defer();

@@ -1,6 +1,6 @@
 angular.module('a2BClientApp')
 	.service('PaymentService', function ($q, $http, $resource,$rootScope, $cookieStore) {
-		var baseUrl = 'http://localhost:1337';
+		var baseUrl = 'http://localhost:8822';
 		this.userAuthorization = function (authToken, data) {
 			var deferred = $q.defer();
 
