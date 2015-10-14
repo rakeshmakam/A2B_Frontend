@@ -7,15 +7,15 @@
 			<div class="panel panel-login">
 				<div class="panel-heading">
 
-					<div class="row">
-						<div class="col-xs-8 clear clearfix">
+					<div class="row center-block">
+						<div class="col-xs-8 col-center clearfix">
 							<div class="col-xs-12" style="text-align:center">
-								<div class="col-xs-6">
-									<span class="active" id="login-form-link">Login</span>
+								<div class="col-xs-12">
+									<span class="active loginPageStyle" id="login-form-link">Login</span>
 								</div>
-								<div class="col-xs-6">
-									<span class="active" id="register-form-link">Register</span>
-								</div>
+								<!-- <div class="col-xs-6"> -->
+									<!-- <span class="active" id="register-form-link">Register</span> -->
+								<!-- </div> -->
 							</div>
 						</div>	
 					</div> <!-- end of row -->	 
@@ -24,31 +24,31 @@
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
-<!-- ======================================================================================== -->						
+<!-- ================================================================================ -->						
 							
 
 			<form id="login-form" name="myForm" style="display:block;" novalidate>
 			<p id="mydiv" style = "color: red" ng-if="serverMessage">{{serverMessage}}</p>
 				<div class="form-group">
-						<input type="email" class="form-control" name="email" placeholder="Username" value="" ng-model="userLogin.email"required >
+					<input type="email" class="form-control" name="email" placeholder="Username" value="" ng-model="userLogin.email"required >
 					<div style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">Email is not Valid
 					</div>
 
 				</div>
 				<div class="form-group">
-
-						<input type="password" class="form-control" name="password" placeholder="Password" value="" ng-model="userLogin.password" required>
+					<input type="password" class="form-control" name="password" placeholder="Password" value="" ng-model="userLogin.password" required>
 				</div>
 				
 				<div class="form-group">
-						<div class="row">
-							<div class="col-sm-6 col-sm-offset-3">
-								<button class="form-control btn btn-login" value="Log In" ng-click="login(userLogin)" ng-disabled="myForm.email.$pristine && myForm.email.$invalid || myForm.password.$pristine && myForm.password.$invalid">login</button>
-							</div>
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							<button class="form-control btn btn-login" value="Log In" ng-click="login(userLogin)" ng-disabled="myForm.email.$pristine  && myForm.email.$invalid || myForm.password.$pristine && myForm.password.$invalid">login</button>
 						</div>
+					</div>
 
 				</div>
 				<p id="mydiv" ng-if="message">{{message}}</p>
+				<button class="active pull-right joinUs" id="register-form-link">Join Us?</button><span class="pull-right alreadyMember">Not a Member Yet ?</span>
 			</form>
 
 <!-- 						</==================================================================================== -->
@@ -104,7 +104,7 @@
 					<input type="text" class="form-control" name="address_line2" placeholder="Address Line-2" ng-model="userDetail.address_line2" required>
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" name="address_line3" placeholder="Address Line-3" ng-model="userDetail.address_line3" required>
+					<input type="text" class="form-control" name="address_line3" placeholder="Address Line-3" ng-model="userDetail.address_line3">
 				</div>
 				<div class="form-group">
 					<div class="row">
@@ -134,21 +134,15 @@
 					</div>
 				</div>
 				<p ng-if="error">{{error}}</p>
+				<button class="active pull-right joinUs" id="login-form-lin">Go and Login</button><span class="pull-right alreadyMember">Already a Member ?</span>
 		</form>
 
 
-<!-- ====================================================================================== -->
+<!-- =============================================================================== -->
 						</div>
 					</div>
 				</div> <!-- end of panel body -->
-			</div>
-		</div>
+			</div> <!-- end of panel -->
+		</div> <!-- end of col-md-6 -->
 	</div>	<!-- end of row -->	
-
-	
-
-
-
-
-
 </div> <!-- end of container -->

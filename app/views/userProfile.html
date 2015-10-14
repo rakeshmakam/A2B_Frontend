@@ -22,64 +22,35 @@
 	
 </nav> <!-- end of navbar -->
 
-<!-- ============================================================================================= -->
+<!-- ================================================================================ -->
 
 <div class="container">
 	<div class="row"  style="margin-top: 20px;">
 		<div class="col-md-1"></div>
 		
 		<div class="col-md-4">
-			<!-- <div class="panel panel-default">
-				<div class="panel-heading">
-					Profile Picture
-					
-				</div>
-				<div class="panel-body">
-					<img src="app/imagesface-4.png" class="img-responsive img-circle" style="max-width:100px">
-					
-				</div>
-
-
-				
-			</div> -->
+			
 			
 		</div> <!-- end of col-md-4 -->
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">User Information</div>
+				<div class="panel-heading">Welcome Shubham
+				<span class="pull-right">Wallet Amount: 5000</span>
+				</div>
 				<div class="panel-body">
-					<ul style="list-style-type:none">
-					<!-- <p>{{user}}</p> -->
-						<li>
-							<label>Name: {{user.full_name}}</label>
-						</li>
-						<li>
-							<label>Email-Address: {{user.email}}</label>
-
-							
-						</li>
-						<li>
-							<label>Contact No: {{user.phone_num}}</label>
-						</li>
-						<li>
-							<label>Wallet Amount: 5000</label>
-						</li>
-						<li>
-							<label>Address: Mantra Labs</label>
-						</li>
-						<li>
-							<label>Address 2: Bangalore</label>
-						</li>
-						
-					</ul>
+				<p>Flipkart wants to charge this amount: 100</p>
 					
 				</div>
 				
 			</div>
 			
 		</div> <!-- end of col-md-6 -->
-
-		<button class="btn btn-primary center-block" ng-click="pay()" ng-disabled="payButton">Pay</button>
+		<div class="col-xs-6 col-center">
+			<div class="btn-group">
+			<button class="btn btn-primary" ng-click="pay()" ng-disabled="payButton">Authorize</button>
+			<button class="btn btn-danger decline">Decline</button>
+			</div>
+		</div>
 	</div> <!-- end of row -->
 		
 </div>
