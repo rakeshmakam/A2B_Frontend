@@ -90,15 +90,14 @@
 					Password should not be less then 5 characters</span>
 					</div>
 				</div>
-				<!-- <div class="form-group">
-					<input type="password" class="form-control" name="password"  placeholder="Confirm Password" ng-model="userDetail.password" required>
+				<div class="form-group">
+					<input type="password" class="form-control" name="conform_password"  placeholder="Confirm Password" ng-model="conformPassword" required>
 					<div role="alert">
-						<span class="error" ng-hide="{{userDetail.password1 == userDetail.password}}">Password does not match</span>
+						<span class="error" ng-class="{'hide' : conformPassword == userDetail.password}">Password does not match</span>
 					</div>
 				</div>
-				<div role="alert">
-					<span class="error" ng-show="raki != rake">Password does not match</span>
-				</div> -->
+
+				
 				<div class="form-group">
 					<input type="text" class="form-control" name="address_line1" placeholder="Address Line-1" ng-model="userDetail.address_line1" required>
 				</div>
@@ -117,7 +116,11 @@
 							<input type="text" class="form-control" name="country" placeholder="Country" ng-model="userDetail.country" required>
 						</div> -->
 						<div class="col-xs-6">
-							<input type="text" class="form-control" name="pinCode" placeholder="Pin Code" ng-model="userDetail.pinCode" required>
+							<input type="text" class="form-control" name="pinCode" placeholder="Pin Code" ng-model="userDetail.pinCode" ng-pattern="/^\d{6}$/" required>
+							<div role="alert">
+								<span class="error" ng-show="myForm2.pinCode.$error.pattern">
+								Please enter 6 digits Pin Code</span>
+							</div>
 						</div>
 					</div>
 				</div>
