@@ -166,6 +166,7 @@ body {
 .loginPageStyle{
   font-size: 20px;
   color: #53A3CD;
+  /*border-bottom: 2px solid black;*/
 }
 .joinUs{
   color: #53A3CD;
@@ -183,6 +184,10 @@ body {
   margin-left: 4px !important;
   margin-right: 10px !important;
 }
-
+.border_line {
+    margin-top: 8px;
+    border-top: 2px solid #53A3CD;
+    opacity: .4;
+}
 /*========================================================================*/
 

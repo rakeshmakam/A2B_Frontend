@@ -43,6 +43,13 @@ angular
         // resolve : resolve
 
       })
+        .when('/forgotPassword', {
+
+        templateUrl: 'views/forgotPassword.html',
+        //controller: 'UserProfileCtrl',
+        // resolve : resolve
+
+      })
 
       // .when('/', {
 

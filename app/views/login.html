@@ -12,6 +12,7 @@
 							<div class="col-xs-12" style="text-align:center">
 								<div class="col-xs-12">
 									<span class="active loginPageStyle" id="login-form-link">Login</span>
+									<p class="col-center border_line"> </p>
 								</div>
 								<!-- <div class="col-xs-6"> -->
 									<!-- <span class="active" id="register-form-link">Register</span> -->
@@ -30,7 +31,7 @@
 			<form id="login-form" name="myForm" style="display:block;" novalidate>
 			<p id="mydiv" style = "color: red" ng-if="serverMessage">{{serverMessage}}</p>
 				<div class="form-group">
-					<input type="email" class="form-control" name="email" placeholder="Username" value="" ng-model="userLogin.email"required >
+					<input type="email" class="form-control" name="email" placeholder="Email" value="" ng-model="userLogin.email"required >
 					<div style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">Email is not Valid
 					</div>
 
@@ -44,12 +45,17 @@
 						<div class="col-sm-6 col-sm-offset-3">
 							
 							<button class="form-control btn btn-login" value="Log In" ng-click="login(userLogin)" ng-disabled="myForm.$invalid">login</button>
+							<div class="text-center">
+								<a href="#/forgotPassword" class="forgot-password">Forgot Password ?</a>
+							</div>
 						</div>
 					</div>
 
 				</div>
 				<p id="mydiv" ng-if="message">{{message}}</p>
+				
 				<button class="active pull-right joinUs" id="register-form-link">Join Us?</button><span class="pull-right alreadyMember">Not a Member Yet ?</span>
+				
 			</form>
 
 <!-- 						</==================================================================================== -->

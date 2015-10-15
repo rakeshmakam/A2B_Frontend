@@ -15,10 +15,11 @@ angular.module('a2BClientApp')
 			return deferred.promise;
 		}
 
-		this.pay = function (authToken, data){
+		this.pay = function (merchantData, data){
 			var deferred = $q.defer();
 
-			$http.post(baseUrl+'/user/makePayment', data, {headers:{ 'Authorization': 'Bearer '+ authToken }})
+			// $http.post(baseUrl+'/user/makePayment', data, {headers:{ 'Authorization': 'Bearer '+ authToken }})
+			$http.post(baseUrl+'/user/makePayment', data, {headers:{ 'Authorization': 'Basic '+  merchantData}})
 				.success(function (response) {
 					deferred.resolve(response);
 				})

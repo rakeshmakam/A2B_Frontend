@@ -67,8 +67,8 @@ angular.module('a2BClientApp')
 			status: $scope.params.status,
 			merchant_transaction_id: $scope.params.merchant_transaction_id
 		}
-		
-		PaymentService.pay($scope.authToken, data)
+		var merchantData = Base64.encode(Base64.decode($scope.params.merchant_id)+':'+Base64.decode($scope.params.merchant_secret));
+		PaymentService.pay(merchantData, data)
 		.then(function (response) {
 			console.log(response);
 		})
