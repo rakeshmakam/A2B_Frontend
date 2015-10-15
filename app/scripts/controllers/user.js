@@ -39,6 +39,7 @@ angular.module('a2BClientApp')
 		 $("#login-form").delay(100).fadeIn(100);
  		$("#register-form").fadeOut(100);
  		$('#login-form-link').text('Login');
+ 		 $('#register-form')[0].reset();
  		
  	});
 
