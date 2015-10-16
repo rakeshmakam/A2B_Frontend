@@ -23,6 +23,8 @@ angular.module('a2BClientApp')
 		})
 	},
 
+
+
 	$scope.getUrlParams = function (url) {
 		var params = {};
 		(url + '?').split('?')[1].split('&').forEach(function (pair) {
@@ -76,4 +78,7 @@ angular.module('a2BClientApp')
 			console.log(err);
 		});
 	}
+
+	
+
 });

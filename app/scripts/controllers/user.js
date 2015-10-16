@@ -89,8 +89,9 @@ angular.module('a2BClientApp')
 			sessionObj.user.password = data.password;
 			$cookieStore.put('User',sessionObj);
 		}).catch(function(err){
-			$scope.serverMessage = "Username and Password does not matches"; // for display server msg
-			$scope.error = err;
+			//$scope.serverMessage = "Username and Password does not matches"; // for display server msg
+			$scope.error = err.message;
+
 			
 		})
 	}
