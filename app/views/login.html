@@ -63,12 +63,14 @@
 
 		<form id="register-form" name ="myForm2" style="display: none;">
 				<div class="form-group">
-					<input type="text" class="form-control" name="fullName" placeholder="FullName" ng-model="userDetail.full_name" ng-minlength="3" ng-maxlength="25" required>
+					<input type="text" class="form-control" name="fullName" placeholder="FullName" ng-model="userDetail.full_name" ng-minlength="3" ng-maxlength="25" ng-pattern="/^[a-zA-Z]/" required>
 					<div role="alert">
 						<span class="error" ng-show="myForm2.fullName.$error.minlength">
 						Too short!</span>
 						<span class="error" ng-show="myForm2.fullName.$error.maxlength">
 						Too long!</span>
+						<span class="error" ng-show="myForm2.fullName.$error.pattern">
+						Name is not proper</span>
 					</div>
 
 

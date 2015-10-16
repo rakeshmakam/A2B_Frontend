@@ -50,6 +50,9 @@ angular
         // resolve : resolve
 
       })
+        .when('/decline',{
+        templateUrl: 'views/login.html'
+      })
 
       // .when('/', {
 

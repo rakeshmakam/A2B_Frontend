@@ -46,11 +46,11 @@ angular.module('a2BClientApp')
 	.then(function (response) {
 		console.log(response);
 				// functionality of button
-			$scope.payButton = false;	
+		//	$scope.payButton = false;	
 	})
 	.catch(function (err) {
 		console.log(err);
-		$scope.payButton = true;
+		//$scope.payButton = true;
 
 	});
 
