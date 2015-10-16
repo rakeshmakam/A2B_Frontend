@@ -27,6 +27,12 @@ angular
         templateUrl: 'views/userProfile.html',
         controller: 'UserProfileCtrl',
       })
+      .when('/forgotPassword', {
+        templateUrl: 'views/forgotPassword.html',
+      })
+      .when('/decline',{
+        templateUrl: 'views/login.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
