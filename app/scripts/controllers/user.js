@@ -39,6 +39,7 @@ angular.module('a2BClientApp')
 		});
 
 		$scope.registerUser = function(){
+			$scope.registerButton = true;
 			UserService.register($scope.user)
 			.then(function(response){			  		
 		   		$("#login-form").delay(100).fadeIn(100);
@@ -52,10 +53,12 @@ angular.module('a2BClientApp')
 				}, 3000);
 			})
 			.catch(function(err){
+				$scope.registerButton = false;
 			})
 		}
 
 		$scope.login = function(){
+			$scope.loginButton = true;
 			UserService.login($scope.user)
 			.then(function(response){
 				$scope.serverMessage = '';
@@ -66,6 +69,7 @@ angular.module('a2BClientApp')
 			})
 			.catch(function(err){
 				$scope.error = err.message;
+				$scope.loginButton = false;
 				$location.path('/');
 			});
 		}
