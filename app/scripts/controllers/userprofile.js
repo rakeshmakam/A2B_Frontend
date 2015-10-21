@@ -10,7 +10,7 @@
 angular.module('a2BClientApp')
   .controller('UserProfileCtrl', function ($scope, $rootScope, $cookieStore, UserService, $location, PaymentService,$cookies) {
 
-    $rootScope.user = $cookies.get('User').user;
+    $rootScope.user = $cookies.get('AtoB').user;
     // $scope.authToken = $rootScope.user.token;
     console.log($rootScope.user);
 	$scope.logout = function () {
@@ -18,7 +18,7 @@ angular.module('a2BClientApp')
 		.then(function (response) {
 			$location.path('/')
 			console.log('mmmmmmmmmmmm',User);
-			$cookies.remove("User");
+			$cookies.remove("AtoB");
 		}).catch(function (err) {
 			
 			$scope.error = err;
@@ -89,7 +89,7 @@ angular.module('a2BClientApp')
 
 
 	$scope.closeWindow = function() {
-		$cookies.remove("User");
+		$cookies.remove("AtoB");
 		window.close();		
 	}
 
