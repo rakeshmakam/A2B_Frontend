@@ -59,7 +59,7 @@ angular.module('a2BClientApp')
 
 		$scope.login = function(){
 			$scope.loginButton = true;
-			UserService.login($scope.user)
+			UserService.login($scope.userData)
 			.then(function(response){
 				$scope.serverMessage = '';
 				$location.path('/userprofile');
