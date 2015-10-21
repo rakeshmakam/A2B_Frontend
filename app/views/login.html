@@ -44,7 +44,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-sm-offset-3">
 							
-							<button class="form-control btn btn-login" value="Log In" ng-click="login()" ng-disabled="myForm.$invalid">login</button>
+							<button class="form-control btn btn-login" value="Log In" ng-click="login()" ng-disabled="myForm.$invalid || loginButton">login</button>
 							<div class="text-center">
 								<a href="#/forgotPassword" class="forgot-password">Forgot Password ?</a>
 							</div>
@@ -138,7 +138,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-sm-offset-3">
 							
-							<button class="form-control btn btn-register" value="Register Now" ng-click="registerUser()" ng-disabled="myForm2.$invalid">Register</button>
+							<button class="form-control btn btn-register" value="Register Now" ng-click="registerUser()" ng-disabled="myForm2.$invalid || registerButton">Register</button>
 						</div>
 					</div>
 				</div>
