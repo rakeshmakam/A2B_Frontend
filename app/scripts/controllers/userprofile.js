@@ -9,9 +9,10 @@
  */
 angular.module('a2BClientApp')
   .controller('UserProfileCtrl', function ($scope, $rootScope, $cookieStore, UserService, $location, PaymentService,$cookies) {
-    $rootScope.user = $cookies.get('AtoB').user;
+    $rootScope.user = JSON.parse($cookies.get('AtoB')).user;
+    console.log($rootScope.user);
 	$scope.logout = function () {
-		UserService.logout($scope.authToken)
+		UserService.logout($rootScope.user.token)
 		.then(function (response) {
 			$location.path('/')
 			$cookies.remove("AtoB");
@@ -19,6 +20,7 @@ angular.module('a2BClientApp')
 			$scope.error = err;
 		})
 	},
+
 	$scope.getUrlParams = function (url) {
 		var params = {};
 		(url + '?').split('?')[1].split('&').forEach(function (pair) {
@@ -36,36 +38,45 @@ angular.module('a2BClientApp')
 		amount: $scope.params.amount,
 		currency: $scope.params.currency
 	};
+
 	$scope.payButton = false;
-	PaymentService.userAuthorization($scope.authToken, $scope.userAuthorizationData)
-	.then(function (response) {
-		$scope.payButton = true;	
-	})
-	.catch(function (err) {
+
+	UserService.existMerchant($rootScope.user.token, {merchantId: Base64.decode($scope.params.merchant_id), vendorUserId: $scope.params.vendor_user_id})
+	.then(function (res) {
+		PaymentService.userAuthorization($rootScope.user.token, $scope.userAuthorizationData)
+		.then(function (response) {
+			console.log(response.userToken);
+			$scope.AuthToken = response.userToken;
+			$scope.payButton = true;	
+		}).catch(function (error) {
+			$scope.payButton = false;
+		});	
+	}).catch(function (err) {
 		$scope.payButton = false;
 	});
 
+	// PaymentService.userAuthorization($rootScope.user.token, $scope.userAuthorizationData).then(function (response) {
+	// 	$scope.payButton = true;	
+	// }).catch(function (err) {
+	// 	$scope.payButton = false;
+	// });
+
 	$scope.pay = function () {
 		var data = {
-			merchant_id : Base64.decode($scope.params.merchant_id),
-			currency: $scope.params.currency,
-			amount: $scope.params.amount,
-			description: $scope.params.description,
-			metadata: $scope.params.metadata,
-			recipt_email: $scope.params.recipt_email,
-			recipt_number: $scope.params.recipt_number,
-			shipping_info: $scope.params.shipping_info,
 			statement_descriptor: $scope.params.statement_descriptor,
-			status: $scope.params.status,
-			merchant_transaction_id: $scope.params.merchant_transaction_id
+			description: $scope.params.description,
+			user_token: $scope.AuthToken
+
 		}
 		var merchantData = Base64.encode(Base64.decode($scope.params.merchant_id)+':'+Base64.decode($scope.params.merchant_secret));
-		PaymentService.pay(merchantData, data)
-		.then(function (response) {
-		})
-		.catch(function (err) {
+
+		PaymentService.pay(merchantData, data).then(function (response) {
+			console.log(response);
+		}).catch(function (err) {
+			console.log(error);
 		});
 	}
+	
 	$scope.closeWindow = function() {
 		$cookies.remove("AtoB");
 		window.close();		
