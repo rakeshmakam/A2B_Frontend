@@ -1,6 +1,7 @@
 angular.module('a2BClientApp')
 	.service('PaymentService', function ($q, $http, $resource,$rootScope, $cookieStore) {
 		var baseUrl = window.location.origin;
+
 		this.userAuthorization = function (authToken, data) {
 			var deferred = $q.defer();
 
@@ -17,7 +18,7 @@ angular.module('a2BClientApp')
 
 		this.pay = function (merchantData, data){
 			var deferred = $q.defer();
-
+			console.log('merchantData',merchantData);
 			// $http.post(baseUrl+'/user/makePayment', data, {headers:{ 'Authorization': 'Bearer '+ authToken }})
 			$http.post(baseUrl+'/api/user/makePayment', data, {headers:{ 'Authorization': 'Basic '+  merchantData}})
 				.success(function (response) {

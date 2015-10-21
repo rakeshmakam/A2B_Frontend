@@ -14,6 +14,23 @@ angular.module('a2BClientApp')
 	
 
 // ===============================================================================================
+	// if($cookieStore!=null){
+	// 	$cookieStore.remove("User");
+	// }
+
+	//console.log('=======>',$cookies.get('User'))
+
+	if($cookies.get('User')){
+		$location.path('/userprofile')
+
+	}
+	else{
+		$location.path('/')
+	}
+
+
+
+
 	$(function() {
 
     $('#login-form-link').click(function(e) {
@@ -53,9 +70,9 @@ angular.module('a2BClientApp')
 
 
 
-	$scope.registerUser = function(data){
-		console.log('from register form',data);
-		UserService.register(data)
+	$scope.registerUser = function(){
+		console.log('from register form',$scope.user);
+		UserService.register($scope.user)
 		.then(function(response){
 			console.log('resp',response);
 			  		
@@ -73,28 +90,43 @@ angular.module('a2BClientApp')
 		}).catch(function(err){
 			//$scope.error = err;
 			console.log('error',err);
-			$scope.error = err.invalidAttributes.email[0].message;
+			//$scope.error = err.invalidAttributes.email[0].message;
 		})
 	}
 
-	$scope.login = function(data){
-		console.log('from form',data);
-		UserService.login(data)
+	$scope.login = function(){
+		console.log('user',$scope.user);
+		UserService.login($scope.user)
 		.then(function(response){
 			$scope.serverMessage = '';
 			console.log('resp',response);
-			$location.path('/userprofile')
+			$location.path('/userprofile');
 			var user = response.user;
-			var sessionObj ={'user':response.user};
-			sessionObj.user.password = data.password;
-			$cookieStore.put('User',sessionObj);
+			var sessionObj = {'user':response};
+			// $cookies.get('sessionObj');
+			console.log('---',sessionObj);
+
+			$cookies.put('User',sessionObj);
+
+			console.log($cookies.get('User'));
+			//console.log('---');
+
+			//$cookieStore.put('User',sessionObj);
+			//console.log("--------",cookieStore.get('User'));
+
+
 		}).catch(function(err){
 			//$scope.serverMessage = "Username and Password does not matches"; // for display server msg
 			$scope.error = err.message;
+			$location.path('/');
 
 			
 		})
 	}
+	//---------------------------------------------------------------------
+
+	
+	//---------------------------------------------------------------------
 
 	
 	$scope.delete = function(id){

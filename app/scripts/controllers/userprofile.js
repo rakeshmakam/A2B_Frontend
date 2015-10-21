@@ -8,17 +8,19 @@
  * Controller of the a2BClientApp
  */
 angular.module('a2BClientApp')
-  .controller('UserProfileCtrl', function ($scope, $rootScope, $cookieStore, UserService, $location, PaymentService) {
+  .controller('UserProfileCtrl', function ($scope, $rootScope, $cookieStore, UserService, $location, PaymentService,$cookies) {
 
-    $rootScope.user = $cookieStore.get('User').user;
-    $scope.authToken = $rootScope.user.token;
-
+    $rootScope.user = $cookies.get('User').user;
+    // $scope.authToken = $rootScope.user.token;
+    console.log($rootScope.user);
 	$scope.logout = function () {
 		UserService.logout($scope.authToken)
 		.then(function (response) {
 			$location.path('/')
-			$cookieStore.remove("User");
+			console.log('mmmmmmmmmmmm',User);
+			$cookies.remove("User");
 		}).catch(function (err) {
+			
 			$scope.error = err;
 		})
 	},
@@ -37,27 +39,29 @@ angular.module('a2BClientApp')
 	},
 
 	$scope.params = $scope.getUrlParams(location.href);
-
+	console.log("----------------> merchantId",$scope.params)
 	$scope.userAuthorizationData = {
 		merchantId: Base64.decode($scope.params.merchant_id),
 		amount: $scope.params.amount,
 		currency: $scope.params.currency
 	};
-
+	$scope.payButton = false;
 	PaymentService.userAuthorization($scope.authToken, $scope.userAuthorizationData)
 	.then(function (response) {
 		console.log(response);
 				// functionality of button
-		//	$scope.payButton = false;	
+			$scope.payButton = true;	
 	})
 	.catch(function (err) {
 		console.log(err);
-		//$scope.payButton = true;
+		$scope.payButton = false;
 
 	});
 
 	$scope.pay = function () {
+		console.log("data fun call")
 		var data = {
+			merchant_id : Base64.decode($scope.params.merchant_id),
 			currency: $scope.params.currency,
 			amount: $scope.params.amount,
 			description: $scope.params.description,
@@ -69,7 +73,10 @@ angular.module('a2BClientApp')
 			status: $scope.params.status,
 			merchant_transaction_id: $scope.params.merchant_transaction_id
 		}
+		console.log('----------->',data)
+		// var merchant = { "_id" : "561cd859e4b0eda81a924ff8", "_class" : "com.mantralabsglobal.addtobill.model.Merchant", "merchantName" : "Flipkart", "chargesEnabled" : "true", "supportedCurrencies" : [  "usd",  "inr" ], "defaultCurrency" : "inr", "email" : "support@flipkartbeta.com", "transfersEnabled" : false }
 		var merchantData = Base64.encode(Base64.decode($scope.params.merchant_id)+':'+Base64.decode($scope.params.merchant_secret));
+		// var merchantData = Base64.encode(merchant);
 		PaymentService.pay(merchantData, data)
 		.then(function (response) {
 			console.log(response);
@@ -78,6 +85,18 @@ angular.module('a2BClientApp')
 			console.log(err);
 		});
 	}
+
+
+
+	$scope.closeWindow = function() {
+		$cookies.remove("User");
+		window.close();		
+	}
+
+	
+
+
+
 
 	
 

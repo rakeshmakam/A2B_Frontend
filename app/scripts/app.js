@@ -18,15 +18,49 @@ angular
     'ngTouch'
   ])
   .config(function ($routeProvider) {
+
+
+    var resolve = {
+
+        auth: function ($location,$cookies) {
+
+            if ($cookies.get('User')) {
+            var user=$cookies.get('User')
+            
+            return user;
+
+        } 
+        else {
+            $location.path('/');
+        }   
+      }
+  };
+
+
+
+  
+
+ 
+
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
-        controller: 'UserCtrl'
+        controller: 'UserCtrl',
+        
+       
+
+
+       
       })
-      .when('/userprofile', {
-        templateUrl: 'views/userProfile.html',
-        controller: 'UserProfileCtrl',
+       .when('/userprofile', {
+      templateUrl: 'views/userProfile.html',
+      controller: 'UserProfileCtrl',
+      resolve : resolve
       })
+
+    
+    
       .when('/forgotPassword', {
         templateUrl: 'views/forgotPassword.html',
       })

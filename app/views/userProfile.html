@@ -3,7 +3,7 @@
 		<div class="navbar-header pull-left">
 			<a class="navbar-brand" href="">A2B</a>
 		</div>
-		
+			
 			<!-- <ul class="nav navbar-nav navbar-right pull-right">
         
 		        <li class="dropdown">
@@ -30,7 +30,7 @@
 
 		<div class="col-xs-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Welcome Shubham
+				<div class="panel-heading">Welcome 
 				<span class="pull-right">Wallet Amount: 5000 INR</span>
 				</div>
 				<div class="panel-body">
@@ -45,12 +45,15 @@
 	</div> <!-- end of row -->
 	<footer>
 		
-		<div class="col-xs-6"><a href=""> Privacy Policy</a></div>
-		<div class="col-xs-1"></div>
-		<div class="col-xs-5">
+		<div class="col-xs-5"><a href=""> Privacy Policy</a></div>
+
+		
+		<div class="col-xs-7">
 			<div class="btn-group">
-				<button class="btn btn-primary" ng-click="pay()" ng-disabled="payButton">Authorize</button>
-				<button class="btn btn-danger decline" on-click="window.close()" > Decline </button>
+				<button class="btn btn-danger decline" ng-click="closeWindow()" > Decline </button>
+				<button class="btn btn-primary" ng-click="pay()" ng-disabled="payButton">Pay</button>
+				
+
 			</div>
 		</div>
 		
