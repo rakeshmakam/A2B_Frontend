@@ -64,8 +64,8 @@ angular.module('a2BClientApp')
 				$scope.serverMessage = '';
 				$location.path('/userprofile');
 				var user = response.user;
-				var sessionObj = {'user':response};
-				$cookies.put('AtoB',sessionObj);
+				var sessionObj = {'user': response};
+				$cookies.put('AtoB',JSON.stringify({user: response}));
 			})
 			.catch(function(err){
 				$scope.error = err.message;
