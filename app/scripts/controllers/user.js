@@ -52,7 +52,6 @@ angular.module('a2BClientApp')
 				}, 3000);
 			})
 			.catch(function(err){
-				console.log('error',err);
 			})
 		}
 
