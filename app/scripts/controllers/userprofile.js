@@ -65,7 +65,7 @@ angular.module('a2BClientApp')
 
 		PaymentService.pay(merchantData, data).then(function (response) {
 			console.log(response);
-			window.parent.closePopup(response.chargeId);
+			window.parent.closePopup(response.paymentResponse.chargeId);
 		}).catch(function (err) {
 			console.log(error);
 		});
