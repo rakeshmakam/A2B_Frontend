@@ -60,13 +60,12 @@ angular.module('a2BClientApp')
 			statement_descriptor: $scope.params.statement_descriptor,
 			description: $scope.params.description,
 			user_token: $scope.AuthToken
-
 		}
 		var merchantData = Base64.encode(Base64.decode($scope.params.merchant_id)+':'+Base64.decode($scope.params.merchant_secret));
 
 		PaymentService.pay(merchantData, data).then(function (response) {
 			console.log(response);
-			window.parent.closePopup(response);
+			window.parent.closePopup(response.chargeId);
 		}).catch(function (err) {
 			console.log(error);
 		});
