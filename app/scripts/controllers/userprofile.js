@@ -8,7 +8,7 @@
  * Controller of the a2BClientApp
  */
 angular.module('a2BClientApp')
-  .controller('UserProfileCtrl', function ($scope, $rootScope, $cookieStore, UserService, $location, PaymentService,$cookies) {
+  .controller('UserProfileCtrl', function ($scope, $rootScope, UserService, $location, PaymentService, $cookies) {
     $rootScope.user = JSON.parse($cookies.get('AtoB')).user;
     console.log($rootScope.user);
 	$scope.logout = function () {

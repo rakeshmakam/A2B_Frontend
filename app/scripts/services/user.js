@@ -1,5 +1,5 @@
 angular.module('a2BClientApp')
-  .service('UserService', function ($q, $http, $resource,$rootScope, $cookieStore) {
+  .service('UserService', function ($q, $http, $rootScope) {
   	var baseUrl = window.location.origin;
 
     this.userDetails = function(){

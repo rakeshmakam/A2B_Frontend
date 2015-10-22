@@ -8,7 +8,7 @@
  * Controller of the a2BClientApp
  */
 angular.module('a2BClientApp')
-	.controller('UserCtrl', function ($scope, UserService, $location,$rootScope, $cookies, $cookieStore) {
+	.controller('UserCtrl', function ($scope, UserService, $location, $rootScope, $cookies) {
 		if ($cookies.get('AtoB')) {
 			$location.path('/userprofile');
 		} else {

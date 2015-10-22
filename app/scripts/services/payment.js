@@ -1,5 +1,5 @@
 angular.module('a2BClientApp')
-	.service('PaymentService', function ($q, $http, $resource,$rootScope, $cookieStore) {
+	.service('PaymentService', function ($q, $http) {
 		var baseUrl = window.location.origin;
 
 		this.userAuthorization = function (authToken, data) {
