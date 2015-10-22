@@ -39,7 +39,7 @@ angular.module('a2BClientApp')
 		currency: $scope.params.currency
 	};
 
-	$scope.payButton = false;
+	$scope.payButton = true;
 
 	UserService.existMerchant($rootScope.user.token, {merchantId: Base64.decode($scope.params.merchant_id), vendorUserId: $scope.params.vendor_user_id})
 	.then(function (res) {
@@ -47,12 +47,12 @@ angular.module('a2BClientApp')
 		.then(function (response) {
 			console.log(response.userToken);
 			$scope.AuthToken = response.userToken;
-			$scope.payButton = true;	
+			$scope.payButton = false;	
 		}).catch(function (error) {
-			$scope.payButton = false;
+			$scope.payButton = true;
 		});	
 	}).catch(function (err) {
-		$scope.payButton = false;
+		$scope.payButton = true;
 	});
 
 	$scope.pay = function () {
