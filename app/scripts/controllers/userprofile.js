@@ -10,7 +10,7 @@
 angular.module('a2BClientApp')
   .controller('UserProfileCtrl', function ($scope, $rootScope, UserService, $location, PaymentService, $cookies) {
     $rootScope.user = JSON.parse($cookies.get('AtoB')).user;
-    console.log($rootScope.user);
+
 	$scope.logout = function () {
 		UserService.logout($rootScope.user.token)
 		.then(function (response) {
@@ -55,12 +55,6 @@ angular.module('a2BClientApp')
 		$scope.payButton = false;
 	});
 
-	// PaymentService.userAuthorization($rootScope.user.token, $scope.userAuthorizationData).then(function (response) {
-	// 	$scope.payButton = true;	
-	// }).catch(function (err) {
-	// 	$scope.payButton = false;
-	// });
-
 	$scope.pay = function () {
 		var data = {
 			statement_descriptor: $scope.params.statement_descriptor,
@@ -72,6 +66,7 @@ angular.module('a2BClientApp')
 
 		PaymentService.pay(merchantData, data).then(function (response) {
 			console.log(response);
+			window.parent.closePopup(response);
 		}).catch(function (err) {
 			console.log(error);
 		});
