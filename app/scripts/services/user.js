@@ -1,5 +1,5 @@
 angular.module('a2BClientApp')
-  .service('UserService', function ($q, $http, $rootScope) {
+  .service('UserService', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
   	var baseUrl = window.location.origin;
 
     this.userDetails = function(){
@@ -7,7 +7,7 @@ angular.module('a2BClientApp')
       var UserProfile = JSON.parse($cookies.get('AtoB')).user;
       $rootScope.user = UserProfile.user;
       var headers = { 'Authorization': $rootScope.user.token };
-      $http.get(baseUrl+'/api/user')
+      $http.get(baseUrl+'/api/v1/user')
       .success(function(response){
         $rootScope.user=response;
         deferred.resolve(response);
@@ -22,7 +22,7 @@ angular.module('a2BClientApp')
 
   	this.register = function(user){
   		var deferred = $q.defer();
-  		$http.post(baseUrl+'/api/user/signup',user)
+  		$http.post(baseUrl+'/api/v1/user/signup',user)
   		.success(function(response){
         
   			deferred.resolve(response);
@@ -37,8 +37,7 @@ angular.module('a2BClientApp')
 
   	this.login = function(data){
   		var deferred = $q.defer();
-      console.log(baseUrl+'/api/user/login');
-  		$http.post(baseUrl+'/api/user/login',data)
+  		$http.post(baseUrl+'/api/v1/user/login',data)
   		.success(function(response){
   			$rootScope.user = response;
   			deferred.resolve(response);
@@ -53,7 +52,7 @@ angular.module('a2BClientApp')
     this.logout = function(authToken){
       var deferred = $q.defer();
       var headers = { 'Authorization': 'Bearer '+ authToken };
-      $http.get(baseUrl+'/api/user/logout',{ headers: headers })
+      $http.get(baseUrl+'/api/v1/user/logout',{ headers: headers })
       .success(function(response){
         deferred.resolve(response);
       })
@@ -66,7 +65,7 @@ angular.module('a2BClientApp')
 
     this.delete = function(id){
       var deferred = $q.defer();
-      $http.delete(baseUrl+'/api/user/id',id)
+      $http.delete(baseUrl+'/api/v1/user/id',id)
       .success(function(response){
         deferred.resolve(response);
       })
@@ -79,7 +78,7 @@ angular.module('a2BClientApp')
 
     this.existMerchant = function(authToken, data){
       var deferred = $q.defer();
-      $http.post(baseUrl+'/api/user/exists', data, {headers: { 'Authorization': 'Bearer '+ authToken }})
+      $http.post(baseUrl+'/api/v1/user/exists', data, {headers: { 'Authorization': 'Bearer '+ authToken }})
       .success(function(response){
         deferred.resolve(response);
       })
@@ -89,4 +88,4 @@ angular.module('a2BClientApp')
 
       return deferred.promise;
     }
-  });
+  }]);

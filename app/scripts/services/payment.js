@@ -1,5 +1,5 @@
 angular.module('a2BClientApp')
-	.service('PaymentService', function ($q, $http) {
+	.service('PaymentService',['$q', '$http', function ($q, $http) {
 		var baseUrl = window.location.origin;
 
 		this.userAuthorization = function (authToken, data) {
@@ -7,7 +7,7 @@ angular.module('a2BClientApp')
 			console.log(authToken);
 			var deferred = $q.defer();
 
-			$http.post(baseUrl+'/api/user/authorize', data, {headers: { 'Authorization': 'Bearer '+ authToken }})
+			$http.post(baseUrl+'/api/v1/user/authorize', data, {headers: { 'Authorization': 'Bearer '+ authToken }})
 				.success(function (response) {
 					deferred.resolve(response);
 				})
@@ -21,7 +21,7 @@ angular.module('a2BClientApp')
 		this.pay = function (merchantData, data){
 			var deferred = $q.defer();
 			console.log('merchantData',merchantData);
-			$http.post(baseUrl+'/api/user/payment', data, {headers: { 'Authorization': 'Basic '+  merchantData}})
+			$http.post(baseUrl+'/api/v1/user/payment', data, {headers: { 'Authorization': 'Basic '+  merchantData}})
 				.success(function (response) {
 					deferred.resolve(response);
 				})
@@ -31,4 +31,4 @@ angular.module('a2BClientApp')
 
 			return deferred.promise;
 		}
-	});
+	}]);
