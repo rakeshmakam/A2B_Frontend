@@ -15,6 +15,33 @@ angular.module('a2BClientApp')
 			$location.path('/');
 		}
 
+		$scope.getUrlParams = function (url) {
+			var params = {};
+			(url + '?').split('?')[1].split('&').forEach(function (pair) {
+			pair = (pair + '=').split('=').map(decodeURIComponent);
+				if (pair[0].length) {
+					params[pair[0]] = pair[1];
+				}
+			});
+			return params;
+		},
+
+
+		$scope.params = $scope.getUrlParams(location.href);
+		console.log($scope.params);
+
+		if(!$.isEmptyObject($scope.params)) {
+			$scope.user = {
+				fullName: $scope.params.vendor_user_name,
+				phoneNumber: $scope.params.vendor_user_phone_number,
+				email: $scope.params.vendor_user_email,
+				addressLine1: $scope.params.vendor_user_address,
+				city: $scope.params.vendor_user_city,
+				pinCode: $scope.params.vendor_user_pincode
+			}
+			console.log($scope.user);
+		}
+
 	    $('#login-form-link').click(function(e) {
 	 		$("#register-form").fadeOut(100);		
 		});
