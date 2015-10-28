@@ -21,8 +21,9 @@ angular
     var resolve = {
         auth: function ($location,$cookies) {
           if ($cookies.get('AtoB')) {
+            return $cookies.get('AtoB');
           } else {
-              $location.path('/');
+            $location.path('/');
           }   
         }
     };
@@ -34,8 +35,7 @@ angular
       })
       .when('/userprofile', {
         templateUrl: 'views/userProfile.html',
-        controller: 'UserProfileCtrl',
-        resolve : resolve
+        controller: 'UserProfileCtrl'
       })
       .when('/forgotPassword', {
         templateUrl: 'views/forgotPassword.html',

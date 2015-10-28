@@ -9,6 +9,12 @@
  */
 angular.module('a2BClientApp')
   .controller('UserProfileCtrl', function ($scope, $rootScope, UserService, $location, PaymentService, $cookies) {
+  	if ($cookies.get('AtoB')) {
+		$location.path('/userprofile');
+	} else {
+		$location.path('/');
+	}
+		
     $rootScope.user = JSON.parse($cookies.get('AtoB')).user;
 
 	$scope.logout = function () {
