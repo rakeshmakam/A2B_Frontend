@@ -73,12 +73,11 @@ angular.module('a2BClientApp')
 			console.log(response);
 			window.parent.closePopup(response.paymentResponse.chargeId);
 		}).catch(function (err) {
-			console.log(error);
+			console.log(err);
 		});
 	}
 	
 	$scope.closeWindow = function() {
-		$cookies.remove("AtoB");
-		window.close();		
+		window.parent.closePopup();	
 	}
 });
