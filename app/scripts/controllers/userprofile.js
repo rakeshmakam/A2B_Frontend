@@ -71,13 +71,15 @@ angular.module('a2BClientApp')
 
 		PaymentService.pay(merchantData, data).then(function (response) {
 			console.log(response);
-			window.parent.closePopup(response.paymentResponse.chargeId);
+			window.parent.location = $scope.params.redirect_url+"/?"+response.paymentResponse.chargeId;
+			// window.parent.closePopup(response.paymentResponse.chargeId);
 		}).catch(function (err) {
 			console.log(err);
 		});
 	}
 	
 	$scope.closeWindow = function() {
-		window.parent.closePopup();	
+		window.location = ""
+		// window.parent.closePopup();	
 	}
 });
