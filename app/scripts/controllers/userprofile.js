@@ -8,20 +8,20 @@
  * Controller of the a2BClientApp
  */
 angular.module('a2BClientApp')
-  .controller('UserProfileCtrl', function ($scope, $rootScope, UserService, $location, PaymentService, $cookies) {
-  	if ($cookies.get('AtoB')) {
+  .controller('UserProfileCtrl', function ($scope, UserService, $location, PaymentService) {
+  	if (localStorage.getItem('AtoB')) {
 		$location.path('/userprofile');
 	} else {
 		$location.path('/');
 	}
 		
-    $rootScope.user = JSON.parse($cookies.get('AtoB')).user;
-
+    $scope.userToken = JSON.parse(localStorage.getItem('AtoB')).token;
+    console.log($scope.userToken);
 	$scope.logout = function () {
-		UserService.logout($rootScope.user.token)
+		UserService.logout($scope.userToken)
 		.then(function (response) {
 			$location.path('/')
-			$cookies.remove("AtoB");
+			localStorage.removeItem('AtoB')
 		}).catch(function (err) {	
 			$scope.error = err;
 		})
@@ -47,9 +47,9 @@ angular.module('a2BClientApp')
 
 	$scope.payButton = true;
 
-	UserService.existMerchant($rootScope.user.token, {merchantId: Base64.decode($scope.params.merchant_id), vendorUserId: $scope.params.vendor_user_id})
+	UserService.existMerchant($scope.userToken, {merchantId: Base64.decode($scope.params.merchant_id), vendorUserId: $scope.params.vendor_user_id})
 	.then(function (res) {
-		PaymentService.userAuthorization($rootScope.user.token, $scope.userAuthorizationData)
+		PaymentService.userAuthorization($scope.userToken, $scope.userAuthorizationData)
 		.then(function (response) {
 			console.log(response.userToken);
 			$scope.AuthToken = response.userToken;

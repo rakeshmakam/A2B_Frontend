@@ -1,23 +1,20 @@
 angular.module('a2BClientApp')
-  .service('UserService', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
+  .service('UserService', ['$q', '$http', function ($q, $http) {
   	var baseUrl = window.location.origin;
 
-    this.userDetails = function(){
-      var deferred = $q.defer();
-      var UserProfile = JSON.parse($cookies.get('AtoB')).user;
-      $rootScope.user = UserProfile.user;
-      var headers = { 'Authorization': $rootScope.user.token };
-      $http.get(baseUrl+'/api/v1/user')
-      .success(function(response){
-        $rootScope.user=response;
-        deferred.resolve(response);
-      })
-      .error(function(err){
-        deferred.reject(err);
-      })
+    // this.userDetails = function(){
+    //   var deferred = $q.defer();
+    //   var headers = { 'Authorization': };
+    //   $http.get(baseUrl+'/api/v1/user')
+    //   .success(function(response){
+    //     deferred.resolve(response);
+    //   })
+    //   .error(function(err){
+    //     deferred.reject(err);
+    //   })
 
-      return deferred.promise;
-    }
+    //   return deferred.promise;
+    // }
 
 
   	this.register = function(user){
@@ -39,7 +36,6 @@ angular.module('a2BClientApp')
   		var deferred = $q.defer();
   		$http.post(baseUrl+'/api/v1/user/login',data)
   		.success(function(response){
-  			$rootScope.user = response;
   			deferred.resolve(response);
   		})
   		.error(function(err){

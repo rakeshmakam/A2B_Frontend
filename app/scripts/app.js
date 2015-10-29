@@ -19,9 +19,9 @@ angular
   ])
   .config(function ($routeProvider) {
     var resolve = {
-        auth: function ($location,$cookies) {
-          if ($cookies.get('AtoB')) {
-            return $cookies.get('AtoB');
+        auth: function ($location) {
+          if (localStorage.getItem('AtoB')) {
+            return localStorage.getItem('AtoB');
           } else {
             $location.path('/');
           }   

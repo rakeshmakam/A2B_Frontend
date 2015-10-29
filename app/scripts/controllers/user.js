@@ -8,8 +8,8 @@
  * Controller of the a2BClientApp
  */
 angular.module('a2BClientApp')
-	.controller('UserCtrl', function ($scope, UserService, $location, $rootScope, $cookies) {
-		if ($cookies.get('AtoB')) {
+	.controller('UserCtrl', function ($scope, UserService, $location) {
+		if (localStorage.getItem('AtoB')) {
 			$location.path('/userprofile');
 		} else {
 			$location.path('/');
@@ -28,7 +28,6 @@ angular.module('a2BClientApp')
 
 
 		$scope.params = $scope.getUrlParams(location.href);
-		console.log($scope.params);
 
 		if(!$.isEmptyObject($scope.params)) {
 			$scope.user = {
@@ -39,7 +38,6 @@ angular.module('a2BClientApp')
 				city: $scope.params.vendor_user_city,
 				pinCode: $scope.params.vendor_user_pincode
 			}
-			console.log($scope.user);
 		}
 
 	    $('#login-form-link').click(function(e) {
@@ -68,46 +66,29 @@ angular.module('a2BClientApp')
 		$scope.registerUser = function(){
 			$scope.registerButton = true;
 			UserService.register($scope.user)
-			.then(function(response){			  		
-		   		$("#login-form").delay(100).fadeIn(100);
-		 		$("#register-form").fadeOut(100);
-				$('#register-form-link').removeClass('active');
-				$('#login-form-link').addClass('active');
-				$('#login-form-link').text('Login');
-				$scope.message = "You have Registered Successfully Please verify and Login";
-				setTimeout(function() {
-	  				$("#mydiv").fadeOut();
-				}, 3000);
+			.then(function (response) {	
+				localStorage.setItem('AtoB',  JSON.stringify(response));
+				$location.path('/userprofile');
 			})
-			.catch(function(err){
+			.catch(function (err) {
+				$scope.error = err.message;
 				$scope.registerButton = false;
 			})
 		}
 
 		$scope.login = function(){
+			console.log($scope.userData);
 			$scope.loginButton = true;
 			UserService.login($scope.userData)
 			.then(function(response){
 				$scope.serverMessage = '';
+				localStorage.setItem('AtoB',  JSON.stringify(response));
 				$location.path('/userprofile');
-				var user = response.user;
-				var sessionObj = {'user': response};
-				$cookies.put('AtoB',JSON.stringify({user: response}));
 			})
 			.catch(function(err){
 				$scope.error = err.message;
 				$scope.loginButton = false;
-				$location.path('/');
+				// $location.path('/');
 			});
-		}
-		
-		$scope.delete = function(id){
-			UserService.delete(id)
-			.then(function(response){
-				$rootScope.user = response.user;
-			})
-			.catch(function(err){
-				$scope.error = err;
-			})
 		}
 	});
