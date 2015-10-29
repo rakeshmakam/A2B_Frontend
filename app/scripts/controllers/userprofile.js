@@ -72,7 +72,7 @@ angular.module('a2BClientApp')
 		PaymentService.pay(merchantData, data).then(function (response) {
 			console.log(response);
 			console.log($scope.params.redirect_url);
-			window.parent.location = $scope.params.redirect_url+"/?charge_id"+response.paymentResponse.chargeId;
+			window.parent.location = $scope.params.redirect_url+"?charge_id"+response.paymentResponse.chargeId;
 			// window.parent.closePopup(response.paymentResponse.chargeId);
 		}).catch(function (err) {
 			console.log(err);
