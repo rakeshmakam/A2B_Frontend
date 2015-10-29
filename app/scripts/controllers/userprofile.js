@@ -80,7 +80,7 @@ angular.module('a2BClientApp')
 	}
 	
 	$scope.closeWindow = function() {
-		window.parent.location = ""
+		window.parent.location = "http://atob.zolome.com/"
 		// window.parent.closePopup();	
 	}
 });
