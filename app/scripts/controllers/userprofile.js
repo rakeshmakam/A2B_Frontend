@@ -80,7 +80,7 @@ angular.module('a2BClientApp')
 	}
 	
 	$scope.closeWindow = function() {
-		window.location = ""
+		window.parent.location = ""
 		// window.parent.closePopup();	
 	}
 });
