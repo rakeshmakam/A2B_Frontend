@@ -6,3 +6,5 @@ npm-debug.log
 .DS_STORE
 .netbeans
 .node_history
+.DS_Store
+app/.DS_Store
