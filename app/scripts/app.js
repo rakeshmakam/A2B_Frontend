@@ -37,8 +37,8 @@ angular
         templateUrl: 'views/signup.html',
         controller: 'UserCtrl'
       })
-      .when('/userprofile', {
-        templateUrl: 'views/userProfile.html',
+      .when('/payment', {
+        templateUrl: 'views/payment.html',
         controller: 'UserProfileCtrl'
       })
       .when('/forgotPassword', {

@@ -10,7 +10,7 @@
 angular.module('a2BClientApp')
 	.controller('UserCtrl', function ($scope, UserService, $location) {
 		// if (localStorage.getItem('AtoB')) {
-		// 	$location.path('/userprofile');
+		// 	$location.path('/payment');
 		// } else {
 		// 	$location.path('/');
 		// }
@@ -65,30 +65,41 @@ angular.module('a2BClientApp')
 
 		$scope.registerUser = function(){
 			$scope.registerButton = true;
+				$scope.loadingImage = true;
 			UserService.register($scope.user)
 			.then(function (response) {	
 				localStorage.setItem('AtoB',  JSON.stringify(response));
-				$location.path('/userprofile');
+				$location.path('/payment');
 			})
 			.catch(function (err) {
 				$scope.error = err.message;
 				$scope.registerButton = false;
+					$scope.loadingImage = false;
 			})
 		}
 
 		$scope.login = function(){
 			console.log($scope.userData);
 			$scope.loginButton = true;
+			$scope.loadingImage = true;
 			UserService.login($scope.userData)
 			.then(function(response){
 				$scope.serverMessage = '';
 				localStorage.setItem('AtoB',  JSON.stringify(response));
-				$location.path('/userprofile');
+				$location.path('/payment');
+				
 			})
 			.catch(function(err){
 				$scope.error = err.message;
 				$scope.loginButton = false;
+				$scope.loadingImage = false;
+
 				// $location.path('/');
 			});
 		}
+
+		// $(".btn-login").click(function(){
+		//     $(".gifImage").show();
+		// });
+
 	});

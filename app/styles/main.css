@@ -189,8 +189,14 @@ body {
     border-top: 2px solid #53A3CD;
     opacity: .4;
 }
+.gifImage{
+      position: absolute;
+    width: 90%;
+}
+.gifImagePay{
+      position: absolute;
 
-
+}
 
 /*========================================================================*/
 

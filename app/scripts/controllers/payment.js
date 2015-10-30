@@ -10,7 +10,7 @@
 angular.module('a2BClientApp')
   .controller('UserProfileCtrl', function ($scope, UserService, $location, PaymentService) {
   	if (localStorage.getItem('AtoB')) {
-		$location.path('/userprofile');
+		$location.path('/payment');
 	} else {
 		$location.path('/');
 	}
@@ -62,13 +62,14 @@ angular.module('a2BClientApp')
 	});
 
 	$scope.pay = function () {
+
 		var data = {
 			statement_descriptor: $scope.params.statement_descriptor,
 			description: $scope.params.description,
 			user_token: $scope.AuthToken
 		}
 		var merchantData = Base64.encode(Base64.decode($scope.params.merchant_id)+':'+Base64.decode($scope.params.merchant_secret));
-
+		$scope.payButtonImage = true;
 		PaymentService.pay(merchantData, data).then(function (response) {
 			console.log(response);
 			console.log($scope.params.redirect_url);
@@ -76,6 +77,7 @@ angular.module('a2BClientApp')
 			// window.parent.closePopup(response.paymentResponse.chargeId);
 		}).catch(function (err) {
 			console.log(err);
+			$scope.payButtonImage = false;
 		});
 	}
 	

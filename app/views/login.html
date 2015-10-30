@@ -38,7 +38,10 @@
 									<div class="row">
 										<div class="col-sm-6 col-sm-offset-3">
 											
-											<button class="form-control btn btn-login" value="Log In" ng-click="login()" ng-disabled="myForm.$invalid || loginButton">login</button>
+											<button class="form-control btn btn-login" value="Log In" ng-click="login()" ng-disabled="myForm.$invalid || loginButton">
+												<div class="gifImage" ng-show="loadingImage"><img src="images/loader.gif" style="width:30px;"></div>
+											login
+											</button>
 											<div class="text-center">
 												<a href="#/forgotPassword" class="forgot-password">Forgot Password ?</a>
 											</div>
@@ -54,6 +57,7 @@
 							</form>
 						</div>
 					</div>
+
 
 				</div> <!-- end of panel body -->
 			</div> <!-- end of panel -->

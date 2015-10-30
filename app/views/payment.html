@@ -31,7 +31,10 @@
 			 <p class="pull-left"><a href=""> Privacy Policy</a></p>
 
 			 <p class="pull-right">
-				 <button class="btn btn-primary" ng-click="pay()" ng-disabled="payButton">Pay</button>
+				 <button class="btn btn-primary" ng-click="pay()" ng-disabled="payButton">
+				 <div class="gifImagePay" ng-show="payButtonImage"><img src="images/loader.gif" style="width:25px;"></div>
+				 Pay
+				 </button>
 				 <button class="btn btn-danger decline" ng-click="closeWindow()" > Decline </button>
 			 </p>
 		 </div>	
