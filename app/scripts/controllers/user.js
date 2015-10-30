@@ -9,11 +9,11 @@
  */
 angular.module('a2BClientApp')
 	.controller('UserCtrl', function ($scope, UserService, $location) {
-		if (localStorage.getItem('AtoB')) {
-			$location.path('/userprofile');
-		} else {
-			$location.path('/');
-		}
+		// if (localStorage.getItem('AtoB')) {
+		// 	$location.path('/userprofile');
+		// } else {
+		// 	$location.path('/');
+		// }
 
 		$scope.getUrlParams = function (url) {
 			var params = {};
@@ -40,28 +40,28 @@ angular.module('a2BClientApp')
 			}
 		}
 
-	    $('#login-form-link').click(function(e) {
-	 		$("#register-form").fadeOut(100);		
-		});
+	 //    $('#login-form-link').click(function(e) {
+	 // 		$("#register-form").fadeOut(100);		
+		// });
 
-		$('#register-form-link').click(function(e) {
-			$("#login-form").fadeOut(100);
-			$('#login-form-link').text('Register');
-			$("#register-form").delay(100).fadeIn(100);
-			$('#login-form-link').unbind("click");	
-		});
+		// $('#register-form-link').click(function(e) {
+		// 	$("#login-form").fadeOut(100);
+		// 	$('#login-form-link').text('Register');
+		// 	$("#register-form").delay(100).fadeIn(100);
+		// 	$('#login-form-link').unbind("click");	
+		// });
 
-		$('#login-form-lin').click(function(e) {
-			$("#login-form").delay(100).fadeIn(100);
-			$("#register-form").fadeOut(100);
-			$('#login-form-link').text('Login');
-			$('#register-form')[0].reset();
-	 	});
+		// $('#login-form-lin').click(function(e) {
+		// 	$("#login-form").delay(100).fadeIn(100);
+		// 	$("#register-form").fadeOut(100);
+		// 	$('#login-form-link').text('Login');
+		// 	$('#register-form')[0].reset();
+	 // 	});
 
-		$("login-submit").on('click', function(){
-		    $(this).siblings().removeClass('active');
-		    $(this).addClass('active');
-		});
+		// $("login-submit").on('click', function(){
+		//     $(this).siblings().removeClass('active');
+		//     $(this).addClass('active');
+		// });
 
 		$scope.registerUser = function(){
 			$scope.registerButton = true;

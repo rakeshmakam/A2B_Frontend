@@ -1,0 +1,113 @@
+<div class="container">
+	<div class="well col-xs-offset-3 text-center ">
+		<h3>A2B</h3>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-login">
+				<div class="panel-heading">
+					<div class="row center-block">
+						<div class="col-xs-8 col-center clearfix">
+							<div class="col-xs-12" style="text-align:center">
+								<div class="col-xs-12">
+									<span class="active loginPageStyle" id="login-form-link">Register</span>
+									<p class="col-center border_line"> </p>
+								</div>
+							</div>
+						</div>	
+					</div> <!-- end of row -->	 
+				</div> <!-- end panel heading -->
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-12">
+							<form id="register-form" name ="myForm2">
+								<div class="form-group">
+									<input type="text" class="form-control" name="fullName" placeholder="FullName" ng-model="user.fullName" ng-minlength="3" ng-maxlength="25" ng-pattern="/^[a-zA-Z]/" required>
+									<div role="alert">
+										<span class="error" ng-show="myForm2.fullName.$error.minlength">
+										Too short!</span>
+										<span class="error" ng-show="myForm2.fullName.$error.maxlength">
+										Too long!</span>
+										<span class="error" ng-show="myForm2.fullName.$error.pattern">
+										Name is not proper</span>
+									</div>
+
+
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Contact No." name="phoneNumber" ng-model="user.phoneNumber"  ng-maxlength="10" ng-pattern="/[2-9]{2}\d{7}/" required>
+									<div role="alert">
+										
+										<span class="error" ng-show="myForm2.phoneNumber.$error.maxlength">
+										Phone Number should not be more then 10 digits</span>
+										<span class="error" ng-show="myForm2.phoneNumber.$error.pattern">
+										*Please enter digits only</span>
+									</div>
+
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control" name="email" placeholder="Email Address" ng-model="user.email" required>
+								<div style="color:red" ng-show="myForm2.email.$dirty && myForm2.email.$invalid">Email is not Valid
+								</div>
+
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="password" placeholder="Password" ng-model="user.password" ng-minlength="5" required>
+									<div role="alert">
+										<span class="error" ng-show="myForm2.password.$error.minlength">Password should not be less then 5 characters</span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<input type="password" class="form-control" name="conform_password"  placeholder="Confirm Password" ng-model="conformPassword" required>
+									<div role="alert">
+										<span class="error" ng-class="{'hide' : conformPassword == user.password}">Password does not match</span>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<input type="text" class="form-control" name="addressLine1" placeholder="Address Line-1" ng-model="user.addressLine1" required>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="addressLine2" placeholder="Address Line-2" ng-model="user.addressLine2">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="addressLine3" placeholder="Address Line-3" ng-model="user.addressLine3">
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-xs-6">
+											<input type="text" class="form-control" name="city" placeholder="City" ng-model="user.city" required>
+										</div>
+										<!-- <div class="col-xs-4">
+											<input type="text" class="form-control" name="country" placeholder="Country" ng-model="user.country" required>
+										</div> -->
+										<div class="col-xs-6">
+											<input type="text" class="form-control" name="pinCode" placeholder="Pin Code" ng-model="user.pinCode" ng-pattern="/^\d{6}$/" required>
+											<div role="alert">
+												<span class="error" ng-show="myForm2.pinCode.$error.pattern">
+												Please enter 6 digits Pin Code</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-3">
+											<button class="form-control btn btn-register" value="Register Now" ng-click="registerUser()" ng-disabled="myForm2.$invalid || registerButton">Register</button>
+										</div>
+									</div>
+								</div>
+								<p ng-if="error">{{error}}</p>
+								<a href="#/"><button class="active pull-right joinUs" id="login-form-lin">Go and Login</button></a>
+								<span class="pull-right alreadyMember">Already a Member ?</span>
+							</form>
+						</div>
+					</div>
+				</div> <!-- end of panel body -->
+			</div> <!-- end of panel -->
+		</div> <!-- end of col-md-6 -->
+	</div>	<!-- end of row -->
+</div> <!-- end of container -->

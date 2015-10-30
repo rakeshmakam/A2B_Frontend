@@ -21,9 +21,9 @@ angular
     var resolve = {
         auth: function ($location) {
           if (localStorage.getItem('AtoB')) {
-            return localStorage.getItem('AtoB');
+            return true;
           } else {
-            $location.path('/');
+            return false;
           }   
         }
     };
@@ -31,6 +31,10 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
+        controller: 'UserCtrl'
+      })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
         controller: 'UserCtrl'
       })
       .when('/userprofile', {
