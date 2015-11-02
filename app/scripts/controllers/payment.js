@@ -10,13 +10,13 @@
 angular.module('a2BClientApp')
   	.controller('UserProfileCtrl', function ($scope, UserService, $location, PaymentService) {
   		$scope.payButton = true;
-	 //  	if (localStorage.getItem('AtoB')) {
-		// 	$location.path('/payment');
-		// } else {
-		// 	$location.path('/');
-		// }
+	  	if (localStorage.getItem('AtoB')) {
+			$location.path('/payment');
+		} else {
+			$location.path('/');
+		}
 			
-	    // $scope.userToken = JSON.parse(localStorage.getItem('AtoB')).token;
+	    $scope.userToken = JSON.parse(localStorage.getItem('AtoB')).token;
 	    // console.log($scope.userToken);
 		// $scope.logout = function () {
 		// 	UserService.logout($scope.userToken)
