@@ -20,7 +20,6 @@ angular.module('a2BClientApp')
 
 		this.pay = function (merchantData, data){
 			var deferred = $q.defer();
-			console.log('merchantData',merchantData);
 			$http.post(baseUrl+'/api/v1/user/payment', data, {headers: { 'Authorization': 'Basic '+  merchantData}})
 				.success(function (response) {
 					deferred.resolve(response);

@@ -86,8 +86,6 @@ angular.module('a2BClientApp')
     }
 
     this.autoLogin = function (data, merchantData) {
-      console.log(merchantData);
-      console.log(data);
       var deferred = $q.defer();
       $http.post(baseUrl+'/api/v1/merchant/user/exists', data, {headers:{'Authorization': 'Basic '+merchantData}})
       .success(function(response){

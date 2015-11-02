@@ -10,13 +10,13 @@
 angular.module('a2BClientApp')
   	.controller('UserProfileCtrl', function ($scope, UserService, $location, PaymentService) {
   		$scope.payButton = true;
-	  	if (localStorage.getItem('AtoB')) {
-			$location.path('/payment');
-		} else {
-			$location.path('/');
-		}
+	 //  	if (localStorage.getItem('AtoB')) {
+		// 	$location.path('/payment');
+		// } else {
+		// 	$location.path('/');
+		// }
 			
-	    $scope.userToken = JSON.parse(localStorage.getItem('AtoB')).token;
+	    // $scope.userToken = JSON.parse(localStorage.getItem('AtoB')).token;
 	    // console.log($scope.userToken);
 		// $scope.logout = function () {
 		// 	UserService.logout($scope.userToken)
@@ -89,29 +89,30 @@ angular.module('a2BClientApp')
 				payload: $scope.params.payload
 
 			}
-			console.log(autoLoginData);
+
 			UserService.autoLogin(autoLoginData, $scope.merchantData)
 			.then(function (resp) {
-				console.log(resp);
+				$scope.userToken = resp.token;
+				UserService.existMerchant($scope.userToken, {merchantId: Base64.decode($scope.params.merchant_id), vendorUserId: $scope.params.vendor_user_id})
+				.then(function (res) {
+					PaymentService.userAuthorization($scope.userToken, userAuthorizationData)
+					.then(function (response) {
+						console.log(response.userToken);
+						$scope.AuthToken = response.userToken;
+						$scope.payButton = false;	
+					})
+					.catch(function (error) {
+						$scope.payButton = true;
+					});	
+				})
+				.catch(function (err) {
+					$scope.payButton = true;
+				});
 			})
 			.catch(function (e) {
 				console.log(e);
 			})
-			UserService.existMerchant($scope.userToken, {merchantId: Base64.decode($scope.params.merchant_id), vendorUserId: $scope.params.vendor_user_id})
-			.then(function (res) {
-				PaymentService.userAuthorization($scope.userToken, userAuthorizationData)
-				.then(function (response) {
-					console.log(response.userToken);
-					$scope.AuthToken = response.userToken;
-					$scope.payButton = false;	
-				})
-				.catch(function (error) {
-					$scope.payButton = true;
-				});	
-			})
-			.catch(function (err) {
-				$scope.payButton = true;
-			});
+
 		}
 		
 
